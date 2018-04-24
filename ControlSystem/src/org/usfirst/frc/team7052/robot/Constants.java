@@ -27,9 +27,9 @@ public class Constants {
     // wiring constants directly related to hardware: Don't change unless rewiring the robot
     // drive
     public static final int kMotorFrontLeft = 3;
-    public static final int kMotorBackLeft = 0;
-    public static final int kMotorFrontRight = 1;
-    public static final int kMotorBackRight = 2;
+    public static final int kMotorBackLeft = 2;
+    public static final int kMotorFrontRight = 0;
+    public static final int kMotorBackRight = 1;
 
     // elevator lift motor
     public static final int kMotorElevatorLift = 5; // can id
@@ -76,8 +76,8 @@ public class Constants {
 		public Logitech() {
 			axis.put(OIMap.leftAxisX, 0);
 			axis.put(OIMap.leftAxisY, 1);
-			axis.put(OIMap.rightAxisX, 4);
-			axis.put(OIMap.rightAxisY, 5);
+			axis.put(OIMap.rightAxisX, 2);
+			axis.put(OIMap.rightAxisY, 3);
 			
 			buttons.put(OIMap.buttonX, 1);
 			buttons.put(OIMap.buttonA, 2);
@@ -85,10 +85,12 @@ public class Constants {
 			buttons.put(OIMap.buttonY, 4);
 			buttons.put(OIMap.leftBumper2, 5);
 			buttons.put(OIMap.rightBumper2, 6);
-			buttons.put(OIMap.buttonBack, 7);
-			buttons.put(OIMap.buttonStart, 8);
-			buttons.put(OIMap.buttonJoystickLeft, 9);
-			buttons.put(OIMap.buttonJoystickRight, 10);
+			buttons.put(OIMap.leftBumper, 7);
+			buttons.put(OIMap.rightBumper, 8);
+			buttons.put(OIMap.buttonBack, 9);
+			buttons.put(OIMap.buttonStart, 10);
+			buttons.put(OIMap.buttonJoystickLeft, 11);
+			buttons.put(OIMap.buttonJoystickRight, 12);
 		}
     }
     

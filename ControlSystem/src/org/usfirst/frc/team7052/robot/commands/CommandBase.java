@@ -16,9 +16,6 @@ public class CommandBase extends Command {
 
     public static void init() {
         driveTrain = DriveTrain.getInstance();
-        if (Constants.ois.size() == 1) {
-            driveTrain.setOI(Constants.ois.get(0));
-        }
         elevatorLift = ElevatorLift.getInstance();
         arm = Arm.getInstance();
     }

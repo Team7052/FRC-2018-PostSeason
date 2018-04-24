@@ -34,7 +34,7 @@ public class BasicAuton extends CommandBase {
     	currentTime = System.currentTimeMillis();
     	duration = (currentTime - startTime);
     	
-    	if (duration <= 3000) {
+    	if (duration <= 100) {
     		driveTrain.leftGroup.set(-0.55);
     		driveTrain.rightGroup.set(0.5);
     	}

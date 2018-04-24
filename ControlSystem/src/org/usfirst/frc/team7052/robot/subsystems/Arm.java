@@ -31,37 +31,36 @@ public class Arm extends Subsystem {
 
     /* Functions for arm manipulation */
     public void spinWheels(OI oi) {
-    	double leftX = oi.getInput(OIMap.leftAxisX) * 0.1; // normalize speed since speed difference between wheels will be small
-    	double leftY = oi.getInput(OIMap.leftAxisY);
-    	
-    	double leftSpeed = leftY;
-    	double rightSpeed = leftY;
-    	
-    	leftSpeed -= leftX;
-    	rightSpeed -= leftX;
-    	
-    	if (leftSpeed < -1) leftSpeed = -1;
-    	else if (leftSpeed > 1) leftSpeed = 1;
-    	if (rightSpeed < -1) rightSpeed = -1;
-    	else if (rightSpeed > 1) rightSpeed = 1;
-    	
-    	leftWheelsMotor.set(leftSpeed);
-    	rightWheelsMotor.set(rightSpeed);
+	    	boolean spinIn = oi.getInput(OIMap.buttonX) == 1;
+	    	boolean spinOut = oi.getInput(OIMap.buttonY) == 1;
+	    	
+	    	if (spinIn && !spinOut) {
+	    		leftWheelsMotor.set(-0.65);
+		    	rightWheelsMotor.set(-0.65);
+	    	}
+	    	else if (spinOut && !spinIn) {
+	    		leftWheelsMotor.set(0.5);
+	    		rightWheelsMotor.set(0.5);
+	    	}
+	    	else {
+	    		leftWheelsMotor.set(0);
+	    		rightWheelsMotor.set(0);
+	    	}
     }
 
     public void openRotatingArms() {
-    	rotatingLeftMotor.set(0.2);
-    	rotatingRightMotor.set(0.2);
+	    	rotatingLeftMotor.set(0.2);
+	    	rotatingRightMotor.set(0.2);
     }
     
     public void closeRotatingArms() {
-    	rotatingLeftMotor.set(0);
-    	rotatingRightMotor.set(0);
+	    	rotatingLeftMotor.set(0);
+	    	rotatingRightMotor.set(0);
     }
     
     public void squeezeCube() {
-    	rotatingLeftMotor.set(-0.2);
-    	rotatingRightMotor.set(0.2);
+	    	rotatingLeftMotor.set(-0.2);
+	    	rotatingRightMotor.set(0.2);
     }
     
     public void liftArm() {

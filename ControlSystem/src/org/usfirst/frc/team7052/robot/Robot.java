@@ -38,13 +38,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
-    	// TODO: use shuffleboard to load joysticks
-    	// fill here
-    	Constants.ois.add(new OI(0, JoystickType.xbox));
-    	Constants.ois.add(new OI(1, JoystickType.logitech));
+	    	// fill here
+	    	Constants.ois.add(new OI(0, JoystickType.logitech));
 		// initialize ois
         CommandBase.init();
-       // mainVision = MainVision.getInstance();
         teleopCommandGroup = new TeleopCommandGroup(); // add teleop command group
         scheduler = Scheduler.getInstance(); // local variable for static variable scheduler
         autoCommand = new BasicAuton();
@@ -58,44 +55,42 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         // init game data
-    	gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	if (gameData.length() > 0) {
-    		if (gameData.charAt(0) == 'L') {
-    			// autonomous to the left
-    		}
-    		else {
-    			// autonomous to the right
-    		}
-    	}
-    	scheduler.removeAll();
-    	autoCommand.start();
+	    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+	    	if (gameData.length() > 0) {
+	    		if (gameData.charAt(0) == 'L') {
+	    			// autonomous to the left
+	    		}
+	    		else {
+	    			// autonomous to the right
+	    		}
+	    	}
+	    	scheduler.removeAll();
+	    	autoCommand.start();
     }
     
     public void resetJoysticks() {
-    	if (Constants.ois.size() > 1) {
-    		teleopCommandGroup.controlArmCommand.oi = Constants.ois.get(1);
-    		teleopCommandGroup.controlElevatorCommand.oi = Constants.ois.get(1);
-    		teleopCommandGroup.driveRobotCommand.oi = Constants.ois.get(0);
-    		CommandBase.driveTrain.setOI(Constants.ois.get(0));
-    	}
-    	else if (Constants.ois.size() > 0){
-    		teleopCommandGroup.controlArmCommand.oi = Constants.ois.get(0);
-    		teleopCommandGroup.controlElevatorCommand.oi = Constants.ois.get(0);
-    		teleopCommandGroup.driveRobotCommand.oi = Constants.ois.get(0);
-    		CommandBase.driveTrain.setOI(Constants.ois.get(0));
-    	}
+	    	if (Constants.ois.size() > 1) {
+	    		teleopCommandGroup.controlArmCommand.oi = Constants.ois.get(1);
+	    		teleopCommandGroup.controlElevatorCommand.oi = Constants.ois.get(1);
+	    		teleopCommandGroup.driveRobotCommand.oi = Constants.ois.get(0);
+	    	}
+	    	else if (Constants.ois.size() > 0){
+	    		teleopCommandGroup.controlArmCommand.oi = Constants.ois.get(0);
+	    		teleopCommandGroup.controlElevatorCommand.oi = Constants.ois.get(0);
+	    		teleopCommandGroup.driveRobotCommand.oi = Constants.ois.get(0);
+	    	}
     }
 
     @Override
     public void teleopInit() {
         scheduler.removeAll();
         //teleop command
-        Scheduler.getInstance().add(teleopCommandGroup);
+        scheduler.add(teleopCommandGroup);
     }
 
     @Override
     public void autonomousPeriodic() {
-    	scheduler.run();
+    		scheduler.run();
     }
 
     @Override
